@@ -48,7 +48,9 @@
                     
                     }
                     
-                    $password_enc = $core->encrypt( $password );
+		    require_once "password.php";
+
+                    $password_enc = password_hash( $password, PASSWORD_DEFAULT );
 
                     if( !$username or ( !$password and !$editid ) or !$dgroup or !$ugroups ) {
 

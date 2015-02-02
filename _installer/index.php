@@ -111,7 +111,8 @@
 							
 							}
 							
-							$user_password = $core->encrypt( $user_password );
+							require_once "password.php";
+							$user_password = password_hash( $user_password, PASSWORD_DEFAULT );
 							
 							mysql_query( "INSERT INTO users VALUES (NULL, '{$user_username}', '{$user_password}', '', '', '5', '1,2,3,4,5');" );
 							mysql_query( "INSERT INTO connection_info VALUES (NULL, '{$radio_ip}', '{$radio_port}', '{$radio_password}', '1', '{$_SERVER['REMOTE_ADDR']}');" );

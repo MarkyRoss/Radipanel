@@ -33,5 +33,5 @@ To install, simply upload using FTP or a file transfer program of your choice, c
 ## Credits
 The developer would like to thank the following people for their contributions to this code:
 
-* [Mark Ross](https://github.com/Marky_Ross)
+* [Mark Ross](https://github.com/MarkyRoss)
 * Josh for the core radiPanel code, the base of this product and our lord and master!

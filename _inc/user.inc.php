@@ -134,13 +134,13 @@
          
         public function login( $username, $password ) { 
              
-            global $core, $db; 
+            global $core, $db;
+
+	    require_once "password.php";
              
             $username     = $core->clean( $username ); 
-            $password     = $core->clean( $password ); 
-            $password_enc = $core->encrypt( $password ); 
              
-            $query = $db->query("SELECT * FROM users WHERE username = '{$username}' AND password = '{$password_enc}'"); 
+            $query = $db->query("SELECT * FROM users WHERE username = '{$username}' LIMIT 1"); 
             $array = $db->assoc($query); 
             $num   = $db->num($query); 
              
@@ -153,7 +153,11 @@
              
                 throw new UserException( 'Invalid username/password.' ); 
              
-            } 
+            }
+	    else if(!password_verify($password, $array['password']))
+	    {
+		throw new UserException( 'Invalid username/password.' );
+	    }
             else if ($array['banned'] == "1") { 
 
                 throw new UserException( 'You have been banned. Please contact a member of the staff team.' ); 
