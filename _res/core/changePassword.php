@@ -17,18 +17,21 @@
 	
 				try {
 	
+					$query = $db->query("SELECT * FROM users WHERE id = '{$user->data['id']}'");
+					$fetch = $db->assoc($query);
+
 					$oldpassword     = $core->clean( $_POST['current_password'] );
 					$oldpassword_enc = $core->encrypt( $oldpassword );
 	
-					$newpassword     = $core->clean( $_POST['new_password'] );
-					$newpassword_enc = $core->encrypt( $newpassword );
+					$newpassword     = $_POST['new_password'];
+					$newpassword_enc = password_hash($newpassword, PASSWORD_DEFAULT);
 	
 					if( !$oldpassword or  !$newpassword) {
 	
 						throw new Exception( "All fields are required." );
 	
 					}
-					elseif( $oldpassword_enc != $user->data['password'] ) {
+					elseif( !password_verify($oldpassword, $fetch['password']) ) {
 	
 						throw new Exception( "The password you entered does not match the one we have on record." );
 	

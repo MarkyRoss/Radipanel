@@ -47,8 +47,6 @@
                         }
                     
                     }
-                    
-		    require_once "password.php";
 
                     $password_enc = password_hash( $password, PASSWORD_DEFAULT );
 

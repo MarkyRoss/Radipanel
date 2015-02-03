@@ -19,6 +19,7 @@
 	require_once( "db.inc.php" );
 	require_once( "core.inc.php" );
 	require_once( "user.inc.php" );
+	require_once( "password.php" );
 	
 	if( file_exists( "_installer/" ) ) {
 	
